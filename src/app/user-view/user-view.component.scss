@@ -1,0 +1,15 @@
+/* html, body {
+    text-align: center;
+    html,body { height: 100%; margin: 0px; padding: 0px; }
+} */
+
+$logo-size: 10%;
+
+.centerContainer {
+    text-align: center;
+}
+
+#logo {
+    height: $logo-size;
+    width: $logo-size;
+}
