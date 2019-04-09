@@ -2,3 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$logo-size: 15%;
+
+#login-card {
+    margin: 15% 25%
+}
+
+.center-container {
+    text-align: center;
+}
+
+#logo {
+    height: $logo-size;
+    width: $logo-size;
+}

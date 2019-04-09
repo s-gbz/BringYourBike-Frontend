@@ -10,17 +10,17 @@ import { Bike } from "./entities";
 })
 export class HttpService {
 
-  httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
+  private httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 
-  bikeStatusUrl = "/bike-status";
-  ownerAddBikeUrl = "/owner/add-bike";
-  ownerUpdateBikeUrl = "/owner/update-bike";
-  ownerGetBikeUrl = "/owner/get-bike";
+  private bikeStatusUrl = "/bike-status";
+  private ownerAddBikeUrl = "/owner/add-bike";
+  private ownerUpdateBikeUrl = "/owner/update-bike";
+  private ownerGetBikeUrl = "/owner/get-bike";
 
   constructor(private http: HttpClient) { }
 
-  getBikeStatus(id: number): Observable<Bike> {
-    return this.http.get<Bike>(environment.serverUrl + this.bikeStatusUrl + `/{id}`, this.httpOptions);
+  getBikeStatus(pin: number): Observable<Bike> {
+    return this.http.get<Bike>(environment.serverUrl + this.bikeStatusUrl + `/${pin}`, this.httpOptions);
   }
 
   ownerAddBike(bike: Bike): Observable<number> {
@@ -33,7 +33,7 @@ export class HttpService {
     return this.http.post<boolean>(environment.serverUrl + this.ownerUpdateBikeUrl, bikeJson, this.httpOptions);
   }
 
-  ownerGetBike(id: number): Observable<Bike> {
-    return this.http.get<Bike>(environment.serverUrl + this.ownerGetBikeUrl + `/{id}`, this.httpOptions);
+  ownerGetBike(pin: number): Observable<Bike> {
+    return this.http.get<Bike>(environment.serverUrl + this.ownerGetBikeUrl + `/${pin}`, this.httpOptions);
   }
 }

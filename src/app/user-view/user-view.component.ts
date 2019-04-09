@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
+import { Bike } from "../entities";
 
 @Component({
   selector: "app-user-view",
@@ -8,13 +9,12 @@ import { HttpService } from "../http.service";
 })
 export class UserViewComponent implements OnInit {
 
+  bike: Bike;
   constructor(private httpService: HttpService) { }
 
   ngOnInit() { }
 
-  onClickGetBike(id: number): void {
-    console.log("onClickGetBike: " + id);
-
-    this.httpService.getBikeStatus(id);
+  onClickGetBike(pin: number): void {
+    this.httpService.getBikeStatus(pin).subscribe(bike => this.bike = bike);
   }
 }

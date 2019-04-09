@@ -2,18 +2,3 @@
     text-align: center;
     html,body { height: 100%; margin: 0px; padding: 0px; }
 } */
-
-$logo-size: 15%;
-
-#login-card {
-    margin: 15% 25%
-}
-
-.center-container {
-    text-align: center;
-}
-
-#logo {
-    height: $logo-size;
-    width: $logo-size;
-}

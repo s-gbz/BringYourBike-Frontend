@@ -1,8 +1,22 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Custom Toolbar</span>
+    <span>Bring Your Bike</span>
   </mat-toolbar-row>
 </mat-toolbar>
-<p>
-  owner-view works!
-</p>
+
+<mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
+  <mat-card-content>
+    <mat-card-title>Login</mat-card-title>
+    <br>
+    <img id="logo" mat-card-image src="../../assets/logo-big.png" alt="Website logo">
+    <br>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input #idInput matInput placeholder="Enter your PIN">
+      </mat-form-field>
+      <button mat-icon-button (click)="onClickGetBike(idInput.value)">
+        <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

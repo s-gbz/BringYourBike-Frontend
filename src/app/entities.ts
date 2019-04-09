@@ -1,11 +1,13 @@
 export class Bike {
     id: number;
+    pin: number;
     ownerName: string;
     email: string;
     model: string;
     issues: { id: number, issue: number, fixed: boolean} [];
     priority: number;
     status: number;
+    // description: string
 }
 
 export class Issue {
