@@ -3,7 +3,7 @@ export class Bike {
     ownerName: string;
     email: string;
     model: string;
-    issues: { issue: number, fixed: boolean} [];
+    issues: { id: number, issue: number, fixed: boolean} [];
     priority: number;
     status: number;
 }
