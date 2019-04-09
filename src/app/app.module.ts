@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { UserViewComponent } from "./user-view/user-view.component";
 import { OwnerViewComponent } from "./owner-view/owner-view.component";
 import { MaterialModule } from "./material/material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MaterialModule } from "./material/material.module";
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
