@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Bring Your Bike</span>
-  </mat-toolbar-row>
+  <span>Bring Your Bike</span>
+  <span class="spacer"></span>
+  <span *ngIf="bike !== undefined">PIN: {{bike.pin}}</span>
 </mat-toolbar>
 
 <mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
@@ -18,5 +18,15 @@
         <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
       </button>
     </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
+  <mat-spinner id="spinner"></mat-spinner>
+</mat-card>
+
+<mat-card id="login-card" class="center-container" *ngIf="bike !== undefined && spinnerFinished">
+  <mat-card-content>
+
   </mat-card-content>
 </mat-card>

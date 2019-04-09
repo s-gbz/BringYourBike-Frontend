@@ -17,3 +17,15 @@ $logo-size: 15%;
     height: $logo-size;
     width: $logo-size;
 }
+
+.align-right {
+    margin-right: 5%;
+}
+
+.spacer {
+    flex: 1 1 auto
+}
+
+#spinner {
+    margin:0 auto;
+}

@@ -19,7 +19,7 @@ export class Issue {
     static readonly Bremsendefekt = new Issue("Bremsendefekt", 3, 5);
     static readonly STVOungerecht = new Issue("STVOungerecht", 3, 6);
 
-    private constructor(public name: string, public readonly significance: number, public readonly id: number) { }
+    private constructor(public name: string, public readonly importance: number, public readonly id: number) { }
 }
 
 export enum Status {
