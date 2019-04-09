@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>Bring Your Bike</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  
+  <mat-toolbar-row>
+    <span>Bring Your Bike</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <mat-card id="login-card" class="center-container">
   <mat-card-content>
     <mat-card-title>Login</mat-card-title>
@@ -12,8 +12,11 @@
     <br>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter your PIN">
+        <input #idInput matInput placeholder="Enter your PIN">
       </mat-form-field>
+      <button mat-icon-button (click)="onClickGetBike(idInput.value)">
+        <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

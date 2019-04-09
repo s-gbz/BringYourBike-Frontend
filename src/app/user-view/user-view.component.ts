@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpService } from "../http.service";
 
 @Component({
   selector: "app-user-view",
@@ -7,8 +8,13 @@ import { Component, OnInit } from "@angular/core";
 })
 export class UserViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit() { }
 
+  onClickGetBike(id: number): void {
+    console.log("onClickGetBike: " + id);
+
+    this.httpService.getBikeStatus(id);
+  }
 }
