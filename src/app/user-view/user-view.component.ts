@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
-import { Bike, Issue, BikeModels } from "../entities";
+import { Bike, Issue, BikeModels, Status } from "../entities";
 import { timer } from "rxjs";
 
 @Component({
@@ -12,6 +12,8 @@ export class UserViewComponent implements OnInit {
 
   bike: Bike;
   spinnerFinished = false;
+  statusInfo = "";
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
@@ -20,6 +22,7 @@ export class UserViewComponent implements OnInit {
 
   devInitBike(): void {
     this.bike = new Bike();
+    this.bike.ownerName = "Horsti";
     this.bike.id = 1;
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [
@@ -29,19 +32,34 @@ export class UserViewComponent implements OnInit {
     this.bike.pin = 1234;
     this.bike.priority = 2;
     this.bike.status = 0;
+    this.mapStatusInfoNumToString();
     this.delayAndCloseSpinner();
   }
 
   onClickGetBike(pin: number): void {
     this.httpService.getBikeStatus(pin).subscribe(bike => {
       this.bike = bike;
+      this.mapStatusInfoNumToString();
       this.delayAndCloseSpinner();
     });
   }
 
   delayAndCloseSpinner(): void {
-    timer(1200).subscribe(() => {
+    // TODO: SET TO 1200
+    timer(0).subscribe(() => {
       this.spinnerFinished = true;
     });
+  }
+
+  mapStatusInfoNumToString(): void {
+    if (this.bike) {
+      const statusValue = this.bike.status;
+
+      if (statusValue === 0) { this.statusInfo = Status.WAIT; }
+      // tslint:disable-next-line: one-line
+      else if (statusValue === 1) { this.statusInfo = Status.GOING; }
+      // tslint:disable-next-line: one-line
+      else if (statusValue === 2) { this.statusInfo = Status.READY; }
+    }
   }
 }

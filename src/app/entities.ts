@@ -23,9 +23,9 @@ export class Issue {
 }
 
 export enum Status {
-    "Ausstehend" = 0,
-    "In Bearbeitung" = 1,
-    "Bereit zur Abholung" = 2
+    WAIT = "Ausstehend",
+    GOING = "In Bearbeitung",
+    READY = "Bereit zur Abholung"
 }
 
 export enum BikeModels {

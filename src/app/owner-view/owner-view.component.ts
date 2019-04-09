@@ -12,6 +12,7 @@ export class OwnerViewComponent implements OnInit {
 
   bike: Bike;
   spinnerFinished = false;
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class OwnerViewComponent implements OnInit {
 
   devInitBike(): void {
     this.bike = new Bike();
+    this.bike.ownerName = "Horsti";
     this.bike.id = 1;
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [

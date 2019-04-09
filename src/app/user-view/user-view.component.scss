@@ -1,4 +1,31 @@
-/* html, body {
-    text-align: center;
-    html,body { height: 100%; margin: 0px; padding: 0px; }
-} */
+$dot-size: 50px;
+
+.dot-red {
+    height: $dot-size;
+    width: $dot-size;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .dot-yellow {
+    height: $dot-size;
+    width: $dot-size;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .dot-green {
+    height: $dot-size;
+    width: $dot-size;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
