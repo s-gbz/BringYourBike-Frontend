@@ -20,3 +20,39 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+<mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
+  <mat-spinner id="spinner"></mat-spinner>
+</mat-card>
+
+<mat-card id="login-card" class="center-container" *ngIf="bike !== undefined">
+  <mat-card-content>
+
+    <button mat-icon-button (click)="onClickAddBike()">
+      Add bike
+    </button>
+<br>
+    <button mat-icon-button (click)="onClickUpdateBike()">
+      Update bike
+    </button>
+
+    
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="example-container center-card-margin" *ngIf="bike !== undefined && spinnerFinished">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+

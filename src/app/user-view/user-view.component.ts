@@ -12,6 +12,8 @@ export class UserViewComponent implements OnInit {
 
   bike: Bike;
   spinnerFinished = false;
+  // SET TO 1200
+  spinnerDurationMs = 0;
   statusInfo = "";
 
   constructor(private httpService: HttpService) { }
@@ -20,33 +22,15 @@ export class UserViewComponent implements OnInit {
     this.devInitBike();
   }
 
-  devInitBike(): void {
-    this.bike = new Bike();
-    this.bike.ownerName = "Horsti";
-    this.bike.id = 1;
-    this.bike.email = "horsti1969@gmail.com";
-    this.bike.issues = [
-      {id: null, number: Issue.Bremsendefekt.id, fixed: false},
-      {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
-    this.bike.model = BikeModels.LangLauefer;
-    this.bike.pin = 1234;
-    this.bike.priority = 2;
-    this.bike.status = 0;
-    this.mapStatusInfoNumToString();
-    this.delayAndCloseSpinner();
-  }
-
   onClickGetBike(pin: number): void {
     this.httpService.getBikeStatus(pin).subscribe(bike => {
-      this.bike = bike;
-      this.mapStatusInfoNumToString();
+      this.bike = this.setBikeProperties(bike);
       this.delayAndCloseSpinner();
     });
   }
 
   delayAndCloseSpinner(): void {
-    // TODO: SET TO 1200
-    timer(0).subscribe(() => {
+    timer(this.spinnerDurationMs).subscribe(() => {
       this.spinnerFinished = true;
     });
   }
@@ -64,15 +48,31 @@ export class UserViewComponent implements OnInit {
   }
 
   setBikeProperties(bike): Bike {
-    let tempBike = new Bike();
-/*     this.bike.ownerName = bike.ownerName;
-    this.bike.id = bike.id;
-    this.bike.email = bike.email;
-    this.bike.issues = bike.issues;
-    this.bike.model = bike.model;
-    this.bike.pin = bike.pin;
-    this.bike.priority = bike.priority;
-    this.bike.status = bike.status; */
+    const tempBike = new Bike();
+    tempBike.ownerName = bike.ownerName;
+    tempBike.id = bike.id;
+    tempBike.email = bike.email;
+    tempBike.issues = bike.issues;
+    tempBike.model = bike.model;
+    tempBike.pin = bike.pin;
+    tempBike.priority = bike.priority;
+    tempBike.status = bike.status;
     return tempBike;
+  }
+
+  devInitBike(): void {
+    this.bike = new Bike();
+    this.bike.ownerName = "Horsti";
+    this.bike.id = null;
+    this.bike.email = "horsti1969@gmail.com";
+    this.bike.issues = [
+      {id: null, number: Issue.Bremsendefekt.id, fixed: false},
+      {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
+    this.bike.model = BikeModels.LangLauefer;
+    this.bike.pin = null;
+    this.bike.priority = 2;
+    this.bike.status = 0;
+    this.mapStatusInfoNumToString();
+    this.delayAndCloseSpinner();
   }
 }

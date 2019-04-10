@@ -12,11 +12,55 @@ export class OwnerViewComponent implements OnInit {
 
   bike: Bike;
   spinnerFinished = false;
+  // SET TO 1200
+  spinnerDurationMs = 0;
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
     this.devInitBike();
+  }
+
+  onClickGetBike(pin: number): void {
+    /* this.httpService.ownerGetBike(pin).subscribe(bike => {
+      console.log("subscription bike arg:" + JSON.parse(JSON.stringify(bike)));
+      this.bike = bike;
+      console.log("new bike: " + this.bike);
+      this.delayAndCloseSpinner();
+    }); */
+    this.httpService.getBikeStatus(pin).subscribe(bike => {
+      this.bike = this.setBikeProperties(bike);
+      this.delayAndCloseSpinner();
+    });
+  }
+
+  onClickAddBike(): void {
+    this.httpService.ownerAddBike(this.bike).subscribe(bike => {
+      this.bike = bike;
+    });
+  }
+
+  onClickUpdateBike(): void {
+    this.httpService.ownerUpdateBike(this.bike).subscribe(e => { });
+  }
+
+  delayAndCloseSpinner(): void {
+    timer(this.spinnerDurationMs).subscribe(() => {
+      this.spinnerFinished = true;
+    });
+  }
+
+  setBikeProperties(bike): Bike {
+    const tempBike = new Bike();
+    tempBike.ownerName = bike.ownerName;
+    tempBike.id = bike.id;
+    tempBike.email = bike.email;
+    tempBike.issues = bike.issues;
+    tempBike.model = bike.model;
+    tempBike.pin = bike.pin;
+    tempBike.priority = bike.priority;
+    tempBike.status = bike.status;
+    return tempBike;
   }
 
   devInitBike(): void {
@@ -28,24 +72,9 @@ export class OwnerViewComponent implements OnInit {
       {id: null, number: Issue.Bremsendefekt.id, fixed: false},
       {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
     this.bike.model = BikeModels.LangLauefer;
-    this.bike.pin = 1234;
-    this.bike.priority = 2;
+    this.bike.pin = 8796;
+    this.bike.priority = 8;
     this.bike.status = 0;
     this.delayAndCloseSpinner();
   }
-
-  onClickGetBike(pin: number): void {
-    this.httpService.getBikeStatus(pin).subscribe(bike => {
-      this.bike = bike;
-      this.delayAndCloseSpinner();
-    });
-  }
-
-  delayAndCloseSpinner(): void {
-    // TODO: SET TO 1200
-    timer(0).subscribe(() => {
-      this.spinnerFinished = true;
-    });
-  }
-
 }

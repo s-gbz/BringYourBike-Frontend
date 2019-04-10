@@ -14,6 +14,10 @@ $logo-size: 15%;
     margin: 15% 25%
 }
 
+.center-card-margin {
+    margin: 15% 25%
+}
+
 .center-container {
     text-align: center;
 }
@@ -34,3 +38,12 @@ $logo-size: 15%;
 #spinner {
     margin:0 auto;
 }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
