@@ -12,7 +12,7 @@ import { PinDialogComponent } from "../pin-dialog/pin-dialog.component";
 })
 export class OwnerViewComponent implements OnInit {
 
-  devInit = true;
+  devInit = false;
 
   bike: Bike;
   spinnerFinished = false;
@@ -29,6 +29,7 @@ export class OwnerViewComponent implements OnInit {
 
   ngOnInit() {
     if (this.devInit) { this.devInitBike(); }
+    this.bike = new Bike();
   }
 
   onClickGetBike(pin: number): void {
@@ -44,7 +45,10 @@ export class OwnerViewComponent implements OnInit {
     });
   }
 
-  onClickAddBike(): void {
+  onClickAddBike(model: string): void {
+    this.openPinDialog(1337, "Sebastian");
+
+
     this.httpService.ownerAddBike(this.bike).subscribe(bike => {
       this.bike = bike;
       this.openPinDialog(this.bike.pin, this.bike.ownerName);
@@ -59,10 +63,6 @@ export class OwnerViewComponent implements OnInit {
     timer(this.spinnerDurationMs).subscribe(() => {
       this.spinnerFinished = true;
     });
-  }
-
-  createBikeObjectFromProperties(): void {
-
   }
 
   setBikeProperties(bike): Bike {
@@ -85,18 +85,30 @@ export class OwnerViewComponent implements OnInit {
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [
       {id: null, number: Issue.Bremsendefekt.id, fixed: false},
-      {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
+      {id: null, number: Issue.Kettendefekt.id, fixed: false},
+      {id: null, number: Issue.Vorderraddefekt.id, fixed: false}];
     this.bike.model = BikeModels.LangLauefer;
-    this.bike.pin = 8796;
+    this.bike.pin = null;
     this.bike.priority = 8;
+    this.bike.status = 0;
+    this.delayAndCloseSpinner();
+  }
+
+  initEmptyBike(): void {
+    this.bike = new Bike();
+    this.bike.ownerName = "s";
+    this.bike.id = null;
+    this.bike.email = "om";
+    this.bike.issues = null;
+    this.bike.model = "BikeModels.LangLauefer";
+    this.bike.pin = null;
+    this.bike.priority = 0;
     this.bike.status = 0;
     this.delayAndCloseSpinner();
   }
 
   switchNewRepairToggle(): void {
     this.newRepairToggle = !this.newRepairToggle;
-    this.openPinDialog(1, "Sergej");
-
 
     if (this.newRepairToggle) {
       this.newRepairText = "Abbrechen";

@@ -37,20 +37,17 @@
     </mat-card-content>
   </mat-card>
 
-  <!-- SPINNER -->
-  <mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
-    <mat-spinner id="spinner"></mat-spinner>
-  </mat-card>
+
 
   <!-- NEW REPAIR -->
   <mat-card color="accent" class="mat-elevation-z8 example-container center-card-margin" *ngIf="newRepairToggle">
     <mat-card-title>Neue Reparatur</mat-card-title>
     <mat-form-field>
-      <input #ownerNameInput matInput placeholder="Kundenname">
+      <input [(ngModel)]="this.bike.ownerName" #ownerNameInput matInput placeholder="Kundenname">
     </mat-form-field>
 
     <mat-form-field>
-      <input #emailInput matInput placeholder="E-Mail">
+      <input [(ngModel)]="this.bike.email" #emailInput matInput placeholder="E-Mail">
     </mat-form-field>
 
     <mat-form-field>

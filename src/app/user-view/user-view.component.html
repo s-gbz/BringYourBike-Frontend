@@ -4,7 +4,7 @@
   <span *ngIf="bike !== undefined">PIN {{bike.pin}}</span>
 </mat-toolbar>
 
-<mat-card>
+<mat-card class="main-card-full-height">
   <mat-card id="login-card" class="mat-elevation-z8 center-container" *ngIf="bike === undefined">
     <mat-card-content>
       <br>
@@ -23,24 +23,32 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
-    <mat-spinner id="spinner"></mat-spinner>
-  </mat-card>
+  <!-- WENN EINGELOGT -->
 
-  <mat-card id="login-card" class="center-container" *ngIf="bike !== undefined && spinnerFinished">
-    <mat-card-content>
+  <mat-card color="accent" class="mat-elevation-z8 example-container center-card-margin"
+    *ngIf="bike !== undefined && spinnerFinished">
+    <mat-card-title>Hallo {{bike.ownerName}}</mat-card-title>
+    <mat-card-subtitle>Hier ist der Status deines Fahrrads:</mat-card-subtitle>
+    <span
+      [ngClass]="{'dot-red': bike.status === 0, 'dot-yellow':  bike.status === 1, 'dot-green':  bike.status === 2}"></span>
+    <span>{{statusInfo}}</span>
 
-      <span
-        [ngClass]="{'dot-red': bike.status === 0, 'dot-yellow':  bike.status === 1, 'dot-green':  bike.status === 2}"></span>
-      <span>{{statusInfo}}</span>
+    <mat-form-field style="margin-top: 30px;">
+      <input [(ngModel)]="this.bike.email" #emailInput matInput placeholder="E-Mail" disabled="true">
+    </mat-form-field>
 
-      <mat-divider class=" margin-bottom"></mat-divider>
+    <mat-form-field>
+      <input #emailInput matInput placeholder="Fahrradmodell" value="{{bike.model}}" disabled="true">
+    </mat-form-field>
 
+    <span id="issueLabel">Probleme:</span>
+    <br>
+    <ng-container *ngFor="let issue of bike.issues">
+      <mat-checkbox [(ngModel)]="issue.fixed" disabled="true">{{issue.number | issueNumToStr}}</mat-checkbox>
+      <br>
+    </ng-container>
 
-      <p>Hallo {{bike.ownerName}}</p>
-      <p>Hier ist der Status deines Fahrrads:</p>
-      <p>{{bike}}</p>
-    </mat-card-content>
-  </mat-card>
+    <br>
 
+</mat-card>
 </mat-card>

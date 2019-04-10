@@ -17,6 +17,7 @@ export class UserViewComponent implements OnInit {
   // SET TO 1200
   spinnerDurationMs = 0;
   statusInfo = "";
+  statuses = [ {value: 0, name: "Ausstehend"}, {value: 1, name: "In Bearbeitung"}, {value: 2, name: "Bereit zur Abholung"}];
 
   constructor(private httpService: HttpService) { }
 

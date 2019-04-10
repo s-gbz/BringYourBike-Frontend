@@ -28,7 +28,7 @@ export class Issue {
     static readonly Bremsendefekt = new Issue("Bremsendefekt", 3, 5);
     static readonly STVOungerecht = new Issue("STVO ungeeignet", 3, 6);
 
-    private constructor(public name: string, public readonly importance: number, public readonly id: number) { }
+    private constructor(public name: string, public readonly number: number, public readonly id: number) { }
 
     public static getAllIssues(): Issue [] {
         return [ Issue.Vorderlichtdefekt, Issue.Hinterlichtdefekt, Issue.Kettendefekt, Issue.Vorderraddefekt,
