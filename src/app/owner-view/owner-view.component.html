@@ -1,58 +1,66 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Bring Your Bike</span>
+    <span class="header-left-element">Bring Your Bike: </span>
+    <span>Admin</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
-  <mat-card-content>
-    <mat-card-title>Login</mat-card-title>
+<mat-card>
+
+  <mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
+    <mat-card-content>
+      <mat-card-title>Login</mat-card-title>
+      <br>
+      <img id="logo" mat-card-image src="../../assets/logo-big.png" alt="Website logo">
+      <br>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input #idInput matInput placeholder="Enter your PIN">
+        </mat-form-field>
+        <button mat-icon-button (click)="onClickGetBike(idInput.value)">
+          <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
+    <mat-spinner id="spinner"></mat-spinner>
+  </mat-card>
+
+  <mat-card color="accent" class="example-container center-card-margin" *ngIf="bike !== undefined && spinnerFinished">
+    <mat-form-field>
+      <input #ownerNameInput matInput placeholder="Kundenname">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #emailInput matInput placeholder="E-Mail">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Fahrradmodell">
+        <mat-option *ngFor="let model of bikeModels" [value]="model">{{model}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <span id="issueLabel">Probleme:</span>
     <br>
-    <img id="logo" mat-card-image src="../../assets/logo-big.png" alt="Website logo">
-    <br>
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input #idInput matInput placeholder="Enter your PIN">
-      </mat-form-field>
-      <button mat-icon-button (click)="onClickGetBike(idInput.value)">
-        <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+    <ng-container *ngFor="let issue of issueList">
+      <mat-checkbox>{{issue.name}}</mat-checkbox>
+      <br>
+    </ng-container>
 
-<mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
-  <mat-spinner id="spinner"></mat-spinner>
-</mat-card>
+    <button id="confirm-button" mat-raised-button color="primary" (click)="onClickAddBike()">Bestätigen</button>
+  </mat-card>
 
-<mat-card id="login-card" class="center-container" *ngIf="bike !== undefined">
-  <mat-card-content>
-
+  <mat-card id="login-card" class="center-container" *ngIf="bike !== undefined">
     <button mat-icon-button (click)="onClickAddBike()">
       Add bike
     </button>
-<br>
+    <br>
     <button mat-icon-button (click)="onClickUpdateBike()">
       Update bike
     </button>
+  </mat-card>
 
-    
-  </mat-card-content>
 </mat-card>
-
-<mat-card class="example-container center-card-margin" *ngIf="bike !== undefined && spinnerFinished">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-card>
-

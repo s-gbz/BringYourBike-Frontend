@@ -1,5 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~material-design-icons/iconfont/material-icons.css';
+
+$logo-size: 15%;
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -8,10 +10,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-bottom: 50% !important;
 }
 
-$logo-size: 15%;
+#logo {
+    height: $logo-size;
+    width: $logo-size;
+}
 
 #login-card {
     margin: 15% 25%
+}
+
+#spinner {
+    margin:0 auto;
 }
 
 .center-card-margin {
@@ -22,10 +31,6 @@ $logo-size: 15%;
     text-align: center;
 }
 
-#logo {
-    height: $logo-size;
-    width: $logo-size;
-}
 
 .align-right {
     margin-right: 5%;
@@ -35,15 +40,16 @@ $logo-size: 15%;
     flex: 1 1 auto
 }
 
-#spinner {
-    margin:0 auto;
-}
-
 .example-container {
     display: flex;
     flex-direction: column;
   }
   
-  .example-container > * {
+.example-container > * {
     width: 100%;
   }
+
+.header-left-element {
+    margin-left: 10%;
+    margin-right: 2.5%;
+}

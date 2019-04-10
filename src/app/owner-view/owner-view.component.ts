@@ -10,15 +10,19 @@ import { timer } from "rxjs";
 })
 export class OwnerViewComponent implements OnInit {
 
+  devInit = true;
+
   bike: Bike;
   spinnerFinished = false;
-  // SET TO 1200
-  spinnerDurationMs = 0;
+  spinnerDurationMs = 0; // SET TO 1200
+
+  bikeModels = [ BikeModels.LangLauefer, BikeModels.MountainMuncher, BikeModels.RoadRunner ];
+  issueList = Issue.getAllIssues();
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.devInitBike();
+    if (this.devInit) { this.devInitBike(); }
   }
 
   onClickGetBike(pin: number): void {
@@ -48,6 +52,10 @@ export class OwnerViewComponent implements OnInit {
     timer(this.spinnerDurationMs).subscribe(() => {
       this.spinnerFinished = true;
     });
+  }
+
+  createBikeObjectFromProperties(): void {
+
   }
 
   setBikeProperties(bike): Bike {

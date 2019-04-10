@@ -10,6 +10,8 @@ import { timer } from "rxjs";
 })
 export class UserViewComponent implements OnInit {
 
+  devInit = true;
+
   bike: Bike;
   spinnerFinished = false;
   // SET TO 1200
@@ -19,7 +21,7 @@ export class UserViewComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.devInitBike();
+    if (this.devInit) { this.devInitBike(); }
   }
 
   onClickGetBike(pin: number): void {
@@ -63,13 +65,13 @@ export class UserViewComponent implements OnInit {
   devInitBike(): void {
     this.bike = new Bike();
     this.bike.ownerName = "Horsti";
-    this.bike.id = null;
+    this.bike.id = 1;
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [
       {id: null, number: Issue.Bremsendefekt.id, fixed: false},
       {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
     this.bike.model = BikeModels.LangLauefer;
-    this.bike.pin = null;
+    this.bike.pin = 1337;
     this.bike.priority = 2;
     this.bike.status = 0;
     this.mapStatusInfoNumToString();

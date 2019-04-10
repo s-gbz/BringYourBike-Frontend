@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <span>Bring Your Bike</span>
-  <span class="spacer"></span>
-  <span *ngIf="bike !== undefined">PIN: {{bike.pin}}</span>
+  <span class="header-left-element" *ngIf="bike === undefined">Bring Your Bike</span>
+  <span class="header-left-element" *ngIf="bike !== undefined">Bring Your Bike:</span>
+  <span *ngIf="bike !== undefined">PIN {{bike.pin}}</span>
 </mat-toolbar>
 
 <mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
