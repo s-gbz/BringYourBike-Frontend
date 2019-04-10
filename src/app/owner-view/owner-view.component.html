@@ -1,36 +1,49 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span class="header-left-element">Bring Your Bike: </span>
+    <span class="header-left-element">BringYourBike: </span>
     <span>Admin</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-card>
-
-  <mat-card id="login-card" class="mat-elevation-z8 center-container" *ngIf="bike === undefined">
+  <!-- OPEN BIKE OR FILL NEW REPAIR-->
+  <mat-card id="login-card" class="mat-elevation-z8 center-container" style="margin-bottom: 5%;">
     <mat-card-content>
+
       <br>
-      <img id="logo" mat-card-image src="../../assets/wrench.png" alt="https://www.iconfinder.com/icons/416405/service_setting_tool_tools_work_wrench_icon">
+      <img id="logo" mat-card-image src="../../assets/wrench.png"
+        alt="https://www.iconfinder.com/icons/416405/service_setting_tool_tools_work_wrench_icon">
       <br>
-      <mat-card-title>Fahrradabruf</mat-card-title>
-      <br>
-      <form class="example-form center-container">
-        <mat-form-field class="example-full-width">
-          <input #idInput matInput placeholder="Bitte PIN eingeben">
-        </mat-form-field>
-        <button mat-icon-button (click)="onClickGetBike(idInput.value)">
-          <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
-        </button>
-      </form>
+      <mat-card-title>Reparaturservice</mat-card-title>
+
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile>
+          <form class="example-form center-container">
+            <mat-form-field class="example-full-width">
+              <input #idInput matInput placeholder="PIN eingeben">
+            </mat-form-field>
+            <button mat-icon-button (click)="onClickGetBike(idInput.value)">
+              <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
+            </button>
+          </form>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <button mat-raised-button color="accent" (click)="switchNewRepairToggle()" style="width: 100%;">{{newRepairText}}</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
     </mat-card-content>
   </mat-card>
 
+  <!-- SPINNER -->
   <mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
     <mat-spinner id="spinner"></mat-spinner>
   </mat-card>
 
-  <mat-card color="accent" class="mat-elevation-z8 example-container center-card-margin"
-    *ngIf="bike !== undefined && spinnerFinished">
+  <!-- NEW REPAIR -->
+  <mat-card color="accent" class="mat-elevation-z8 example-container center-card-margin" *ngIf="newRepairToggle">
+    <mat-card-title>Neue Reparatur</mat-card-title>
     <mat-form-field>
       <input #ownerNameInput matInput placeholder="Kundenname">
     </mat-form-field>
@@ -56,11 +69,7 @@
   </mat-card>
 
   <mat-card id="login-card" class="mat-elevation-z8 example-container" *ngIf="bike !== undefined">
-    <button id="add-bike-button" mat-raised-button color="primary"  (click)="onClickAddBike()">
-      Fahrrad aufnehmen
-    </button>
-    <br>
-    <button  id="update-bike-button" mat-raised-button color="primary"  (click)="onClickUpdateBike()">
+    <button id="update-bike-button" mat-raised-button color="primary" (click)="onClickUpdateBike()">
       Fahrrad aktualisieren
     </button>
   </mat-card>

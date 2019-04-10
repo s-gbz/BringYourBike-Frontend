@@ -15,6 +15,8 @@ export class OwnerViewComponent implements OnInit {
   bike: Bike;
   spinnerFinished = false;
   spinnerDurationMs = 0; // SET TO 1200
+  newRepairToggle = false;
+  newRepairText = "Neue Reparatur";
 
   bikeModels = [ BikeModels.LangLauefer, BikeModels.MountainMuncher, BikeModels.RoadRunner ];
   issueList = Issue.getAllIssues();
@@ -84,5 +86,15 @@ export class OwnerViewComponent implements OnInit {
     this.bike.priority = 8;
     this.bike.status = 0;
     this.delayAndCloseSpinner();
+  }
+
+  switchNewRepairToggle(): void {
+    this.newRepairToggle = !this.newRepairToggle;
+
+    if(this.newRepairToggle) {
+      this.newRepairText = "Abbrechen";
+    } else {
+      this.newRepairText = "Neue Reparatur";
+    }
   }
 }
