@@ -10,14 +10,17 @@ import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { IssueNumToStrPipe } from './issue-num-to-str.pipe';
+import { IssueNumToStrPipe } from "./issue-num-to-str.pipe";
+import { PinDialogComponent } from "./pin-dialog/pin-dialog.component";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UserViewComponent,
     OwnerViewComponent,
-    IssueNumToStrPipe
+    IssueNumToStrPipe,
+    PinDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { IssueNumToStrPipe } from './issue-num-to-str.pipe';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PinDialogComponent]
 })
 export class AppModule { }

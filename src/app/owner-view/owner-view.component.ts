@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { BikeModels, Bike, Issue } from "../entities";
 import { timer } from "rxjs";
+import { MatDialog } from "@angular/material";
+import { PinDialogComponent } from "../pin-dialog/pin-dialog.component";
 
 @Component({
   selector: "app-owner-view",
@@ -16,14 +18,14 @@ export class OwnerViewComponent implements OnInit {
   spinnerFinished = false;
   spinnerDurationMs = 0; // SET TO 1200
   newRepairToggle = false;
-  updateBikeToggle = true;
+  updateBikeToggle = false;
 
   newRepairText = "Neue Reparatur";
   statuses = [ {value: 0, name: "Ausstehend"}, {value: 1, name: "In Bearbeitung"}, {value: 2, name: "Bereit zur Abholung"}];
   bikeModels = [ BikeModels.LangLauefer, BikeModels.MountainMuncher, BikeModels.RoadRunner ];
   issueList = Issue.getAllIssues();
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, public pinDialog: MatDialog) { }
 
   ngOnInit() {
     if (this.devInit) { this.devInitBike(); }
@@ -38,13 +40,14 @@ export class OwnerViewComponent implements OnInit {
     }); */
     this.httpService.getBikeStatus(pin).subscribe(bike => {
       this.bike = this.setBikeProperties(bike);
-      this.delayAndCloseSpinner();
+      // this.delayAndCloseSpinner();
     });
   }
 
   onClickAddBike(): void {
     this.httpService.ownerAddBike(this.bike).subscribe(bike => {
       this.bike = bike;
+      this.openPinDialog(this.bike.pin, this.bike.ownerName);
     });
   }
 
@@ -92,6 +95,8 @@ export class OwnerViewComponent implements OnInit {
 
   switchNewRepairToggle(): void {
     this.newRepairToggle = !this.newRepairToggle;
+    this.openPinDialog(1, "Sergej");
+
 
     if (this.newRepairToggle) {
       this.newRepairText = "Abbrechen";
@@ -102,5 +107,11 @@ export class OwnerViewComponent implements OnInit {
 
   switchUpdateBikeToggle(): void {
     this.updateBikeToggle = !this.updateBikeToggle;
+  }
+
+  openPinDialog(pin: number, ownerName: string): void {
+    const dialogRef = this.pinDialog.open(PinDialogComponent, {
+      width: "250px", data: {pin, ownerName}
+    });
   }
 }
