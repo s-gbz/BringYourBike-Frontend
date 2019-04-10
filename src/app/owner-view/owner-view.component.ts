@@ -25,8 +25,8 @@ export class OwnerViewComponent implements OnInit {
     this.bike.id = 1;
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [
-      {id: 1, issue: Issue.Bremsendefekt.importance, fixed: false},
-      {id: 2, issue: Issue.Hinterlichtdefekt.importance, fixed: false}];
+      {id: null, number: Issue.Bremsendefekt.id, fixed: false},
+      {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
     this.bike.model = BikeModels.LangLauefer;
     this.bike.pin = 1234;
     this.bike.priority = 2;
@@ -42,7 +42,8 @@ export class OwnerViewComponent implements OnInit {
   }
 
   delayAndCloseSpinner(): void {
-    timer(1200).subscribe(() => {
+    // TODO: SET TO 1200
+    timer(0).subscribe(() => {
       this.spinnerFinished = true;
     });
   }

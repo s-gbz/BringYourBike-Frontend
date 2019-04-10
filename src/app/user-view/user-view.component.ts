@@ -26,8 +26,8 @@ export class UserViewComponent implements OnInit {
     this.bike.id = 1;
     this.bike.email = "horsti1969@gmail.com";
     this.bike.issues = [
-      {id: 1, issue: Issue.Bremsendefekt.importance, fixed: false},
-      {id: 2, issue: Issue.Hinterlichtdefekt.importance, fixed: false}];
+      {id: null, number: Issue.Bremsendefekt.id, fixed: false},
+      {id: null, number: Issue.Hinterlichtdefekt.id, fixed: false}];
     this.bike.model = BikeModels.LangLauefer;
     this.bike.pin = 1234;
     this.bike.priority = 2;
@@ -61,5 +61,18 @@ export class UserViewComponent implements OnInit {
       // tslint:disable-next-line: one-line
       else if (statusValue === 2) { this.statusInfo = Status.READY; }
     }
+  }
+
+  setBikeProperties(bike): Bike {
+    let tempBike = new Bike();
+/*     this.bike.ownerName = bike.ownerName;
+    this.bike.id = bike.id;
+    this.bike.email = bike.email;
+    this.bike.issues = bike.issues;
+    this.bike.model = bike.model;
+    this.bike.pin = bike.pin;
+    this.bike.priority = bike.priority;
+    this.bike.status = bike.status; */
+    return tempBike;
   }
 }

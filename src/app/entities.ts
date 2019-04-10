@@ -4,10 +4,19 @@ export class Bike {
     ownerName: string;
     email: string;
     model: string;
-    issues: { id: number, issue: number, fixed: boolean} [];
     priority: number;
     status: number;
-    // description: string
+    issues: { id: number, number: number, fixed: boolean} [];
+}
+
+export class BikeInterface {
+    pin: number;
+    ownerName: string;
+    email: string;
+    model: string;
+    priority: number;
+    status: number;
+    issues: { id: number, number: number, fixed: boolean} [];
 }
 
 export class Issue {
