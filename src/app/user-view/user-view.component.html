@@ -4,38 +4,43 @@
   <span *ngIf="bike !== undefined">PIN {{bike.pin}}</span>
 </mat-toolbar>
 
-<mat-card id="login-card" class="center-container" *ngIf="bike === undefined">
-  <mat-card-content>
-    <mat-card-title>Login</mat-card-title>
-    <br>
-    <img id="logo" mat-card-image src="../../assets/logo-big.png" alt="Website logo">
-    <br>
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input #idInput matInput placeholder="Enter your PIN">
-      </mat-form-field>
-      <button mat-icon-button (click)="onClickGetBike(idInput.value)">
-        <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+<mat-card>
+  <mat-card id="login-card" class="mat-elevation-z8 center-container" *ngIf="bike === undefined">
+    <mat-card-content>
+      <br>
+      <img id="logo" mat-card-image src="../../assets/logo-big.png" alt="Website logo">
+      <br>
+      <mat-card-title>Statusabruf</mat-card-title>
+      <br>
+      <form class="example-form center-container">
+        <mat-form-field class="example-full-width">
+          <input #idInput matInput placeholder="Bitte PIN eingeben">
+        </mat-form-field>
+        <button mat-icon-button (click)="onClickGetBike(idInput.value)">
+          <mat-icon aria-label="Example icon-button with a heart icon">arrow_forward</mat-icon>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
-  <mat-spinner id="spinner"></mat-spinner>
-</mat-card>
+  <mat-card id="login-card" *ngIf="bike !== undefined && spinnerFinished !== true">
+    <mat-spinner id="spinner"></mat-spinner>
+  </mat-card>
 
-<mat-card id="login-card" class="center-container" *ngIf="bike !== undefined && spinnerFinished">
-  <mat-card-content>
+  <mat-card id="login-card" class="center-container" *ngIf="bike !== undefined && spinnerFinished">
+    <mat-card-content>
 
-    <span [ngClass]="{'dot-red': bike.status === 0, 'dot-yellow':  bike.status === 1, 'dot-green':  bike.status === 2}"></span>
-    <span>{{statusInfo}}</span>
+      <span
+        [ngClass]="{'dot-red': bike.status === 0, 'dot-yellow':  bike.status === 1, 'dot-green':  bike.status === 2}"></span>
+      <span>{{statusInfo}}</span>
 
-    <mat-divider class=" margin-bottom"></mat-divider>
+      <mat-divider class=" margin-bottom"></mat-divider>
 
-  
-    <p>Hallo {{bike.ownerName}}</p>
-    <p>Hier ist der Status deines Fahrrads:</p>
-    <p>{{bike}}</p>
-  </mat-card-content>
+
+      <p>Hallo {{bike.ownerName}}</p>
+      <p>Hier ist der Status deines Fahrrads:</p>
+      <p>{{bike}}</p>
+    </mat-card-content>
+  </mat-card>
+
 </mat-card>
