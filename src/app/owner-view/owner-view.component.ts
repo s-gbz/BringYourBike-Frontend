@@ -16,6 +16,8 @@ export class OwnerViewComponent implements OnInit {
   spinnerFinished = false;
   spinnerDurationMs = 0; // SET TO 1200
   newRepairToggle = false;
+  updateBikeToggle = true;
+
   newRepairText = "Neue Reparatur";
 
   bikeModels = [ BikeModels.LangLauefer, BikeModels.MountainMuncher, BikeModels.RoadRunner ];
@@ -91,10 +93,14 @@ export class OwnerViewComponent implements OnInit {
   switchNewRepairToggle(): void {
     this.newRepairToggle = !this.newRepairToggle;
 
-    if(this.newRepairToggle) {
+    if (this.newRepairToggle) {
       this.newRepairText = "Abbrechen";
     } else {
       this.newRepairText = "Neue Reparatur";
     }
+  }
+
+  switchUpdateBikeToggle(): void {
+    this.updateBikeToggle = !this.updateBikeToggle;
   }
 }

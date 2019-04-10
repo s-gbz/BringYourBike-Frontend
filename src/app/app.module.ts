@@ -10,12 +10,14 @@ import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { IssueNumToStrPipe } from './issue-num-to-str.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserViewComponent,
-    OwnerViewComponent
+    OwnerViewComponent,
+    IssueNumToStrPipe
   ],
   imports: [
     BrowserModule,
