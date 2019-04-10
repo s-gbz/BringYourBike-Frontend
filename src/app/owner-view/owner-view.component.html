@@ -59,7 +59,7 @@
       </mat-select>
     </mat-form-field>
 
-    <span id="issueLabel">Probleme:</span>
+    <span id="issueLabel" class="bold">Probleme:</span>
     <br>
     <ng-container *ngFor="let issue of issueList">
       <mat-checkbox>{{issue.name}}</mat-checkbox>
@@ -72,6 +72,11 @@
   <!-- UPDATE BIKE -->
   <mat-card id="login-card" class="mat-elevation-z8 example-container" *ngIf="updateBikeToggle && bike !== undefined">
     <mat-card-title>Reparatur aktualisieren</mat-card-title>
+
+    <mat-form-field>
+      <input matInput placeholder="PIN" value="{{bike.pin}}" disabled="true">
+    </mat-form-field>
+
     <mat-form-field>
       <input #ownerNameInput matInput placeholder="Kundenname" value="{{bike.ownerName}}">
     </mat-form-field>
@@ -81,17 +86,27 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input #emailInput matInput placeholder="Fahrradmodell" value="{{bike.model}}">
+      <input #emailInput matInput placeholder="Fahrradmodell" value="{{bike.model}}">
     </mat-form-field>
 
     <span id="issueLabel">Probleme:</span>
     <br>
     <ng-container *ngFor="let issue of bike.issues">
-      <mat-checkbox>{{issue.number | issueNumToStr}}</mat-checkbox>
+      <mat-checkbox  [(ngModel)]="issue.fixed">{{issue.number | issueNumToStr}}</mat-checkbox>
       <br>
     </ng-container>
-    <br>
 
+    <br>
+    <span>Status:</span>
+    <br>
+    <mat-radio-group aria-label="Status" [(ngModel)]="bike.status">
+      <mat-radio-button class="example-radio-button" *ngFor="let status of statuses" [value]="status.value">
+        {{status.name}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <br>
     <button id="update-bike-button" mat-raised-button color="primary" (click)="onClickUpdateBike()">
       Fahrrad aktualisieren
     </button>

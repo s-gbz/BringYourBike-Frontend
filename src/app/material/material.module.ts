@@ -12,6 +12,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatDividerModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatRadioModule
   ],
   exports: [
     MatCardModule,
@@ -42,7 +44,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatDividerModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatRadioModule
     ]
 })
 export class MaterialModule { }

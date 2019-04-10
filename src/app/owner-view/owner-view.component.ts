@@ -19,7 +19,7 @@ export class OwnerViewComponent implements OnInit {
   updateBikeToggle = true;
 
   newRepairText = "Neue Reparatur";
-
+  statuses = [ {value: 0, name: "Ausstehend"}, {value: 1, name: "In Bearbeitung"}, {value: 2, name: "Bereit zur Abholung"}];
   bikeModels = [ BikeModels.LangLauefer, BikeModels.MountainMuncher, BikeModels.RoadRunner ];
   issueList = Issue.getAllIssues();
 
